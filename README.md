@@ -1,1 +1,1 @@
-# gold-intelligence
+# GOLD-INTELLIGENCE
