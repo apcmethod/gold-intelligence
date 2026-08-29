@@ -326,12 +326,12 @@ DAILY MARKET INTELLIGENCE
 Gold · XAU/USD
 </div>
 
-<div class="price">
+<div class="price" id="gold-price">
 —
 </div>
 
-<div class="yellow">
-Esperando datos reales
+<div class="green" id="gold-status">
+Cargando...
 </div>
 
 </div>
@@ -709,6 +709,40 @@ async function loadUS10Y() {
 
 loadUS10Y();
 </script></div>
+<script>
+async function loadGold() {
+    const priceElement = document.getElementById("gold-price");
+    const statusElement = document.getElementById("gold-status");
 
+    try {
+        const response = await fetch("/api/gold");
+
+        if (!response.ok) {
+            throw new Error("No se pudo obtener GOLD");
+        }
+
+        const data = await response.json();
+
+        if (!data.price) {
+            throw new Error("Precio de GOLD no disponible");
+        }
+
+        priceElement.textContent =
+            "$" + Number(data.price).toFixed(2);
+
+        statusElement.textContent =
+            "LIVE · XAU/USD";
+
+    } catch (error) {
+        priceElement.textContent = "—";
+        statusElement.textContent =
+            "Datos no disponibles";
+
+        console.error(error);
+    }
+}
+
+loadGold();
+</script>
 </body>
 </html>
