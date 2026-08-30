@@ -9,30 +9,19 @@ export default async function handler(req, res) {
     }
 
     const url =
-      "https://api.twelvedata.com/price" +
-      "?symbol=DXY" +
+      "https://api.twelvedata.com/symbol_search" +
+      "?symbol=Dollar%20Index" +
+      "&outputsize=20" +
       "&apikey=" + encodeURIComponent(apiKey);
 
     const response = await fetch(url);
     const data = await response.json();
 
-    if (!response.ok || data.status === "error") {
-      return res.status(response.status || 500).json({
-        error: data.message || "Error obteniendo DXY"
-      });
-    }
-
-    return res.status(200).json({
-      symbol: "DXY",
-      price: Number(data.price),
-      source: "Twelve Data",
-      retrieved_at: new Date().toISOString()
-    });
+    return res.status(200).json(data);
 
   } catch (error) {
     return res.status(500).json({
-      error: "Error obteniendo DXY",
-      message: error.message
+      error: error.message
     });
   }
 }
