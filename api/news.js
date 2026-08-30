@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const url =
       `https://www.alphavantage.co/query?function=NEWS_SENTIMENT` +
       `&tickers=FOREX:USD` +
-      `&topics=financial_markets,monetary_policy,inflation,economy_fiscal` +
+      `&topics=financial_markets,economy_monetary,economy_fiscal,economy_macro` +
       `&sort=LATEST` +
       `&limit=10` +
       `&apikey=${apiKey}`;
