@@ -70,6 +70,10 @@ function updateDriver(){
   if(Number.isFinite(yp)) $('driverYield').textContent=yp.toFixed(2)+'%';
   $('driverReason').innerHTML='Motor provisional: <b>US10Y + dólar</b>. El sistema necesita cambios intradía/históricos comparables para asignar causalidad con mayor confianza. No se presentará una causa como segura cuando los datos no la respalden.';
 }
-clock();loadGold();loadUS10Y();loadDXY();loadNews();renderCalendar();setInterval(clock,1000);setInterval(()=>{loadGold();loadUS10Y();loadDXY();loadNews();updateDriver()},15000);setTimeout(updateDriver,1500);
+clock();loadGold();loadUS10Y();loadDXY();loadNews();renderCalendar();setInterval(()=>{loadGold();loadUS10Y();loadDXY();updateDriver()},15000);
+
+setInterval(()=>{
+  loadNews();
+},600000);setTimeout(updateDriver,1500);
 
 </script></body></html>
